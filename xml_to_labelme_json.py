@@ -37,10 +37,10 @@ def xml_to_labelme_json(xml_path: str, img_folder_path):
 # '/home/qiangde/Data/huawei/black/side/outputs/0897-0003-14.xml'
 if __name__ == '__main__':
     # xml folder path
-    pre = '/home/qiangde/Data/huawei/black/side/outputs'
+    pre = '/home/qiangde/Data/side/outputs'
     xml_files = os.listdir(pre)
     for xml_file in xml_files:
-        xml_to_labelme_json(os.path.join(pre, xml_file), '/home/qiangde/Data/huawei/black/side') # image folder path
+        xml_to_labelme_json(os.path.join(pre, xml_file), '/home/qiangde/Data/side') # image folder path
 
 
 
