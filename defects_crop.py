@@ -35,7 +35,7 @@ def xml_info_out(anno_path):
     return result
 
 def defects_crop(xml_folder_path: str, img_folder_path: str, crop_size=64, limit_x=800, limit_y=14600):
-    current_path = os.path.join(os.getcwd(), 'out')
+    current_path = os.path.join(os.getcwd(), 'out/train')
     result = {}
     xml_files = os.listdir(xml_folder_path)
     for xml_file in xml_files:
@@ -64,7 +64,7 @@ def defects_crop(xml_folder_path: str, img_folder_path: str, crop_size=64, limit
             print('%s %d is cropped'%(name, result[name]))
 
 if __name__ == '__main__':
-    defects_crop('/home/qiangde/Data/huawei/black/side/outputs', '/home/qiangde/Data/huawei/black/side')
+    defects_crop('/home/qiangde/Data/side/outputs', '/home/qiangde/Data/side')
 
 
 
