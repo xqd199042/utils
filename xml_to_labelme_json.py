@@ -34,14 +34,19 @@ def xml_to_labelme_json(xml_path: str, img_folder_path):
         f.write(content)
         f.close()
 
+def delete_json(img_folder_path: str):
+    for file in os.listdir(img_folder_path):
+        if file.endswith('.json'):
+            os.remove(os.path.join(img_folder_path, file))
+
 # '/home/qiangde/Data/huawei/black/side/outputs/0897-0003-14.xml'
 if __name__ == '__main__':
     # xml folder path
-    pre = '/home/qiangde/Data/side/outputs'
-    xml_files = os.listdir(pre)
-    for xml_file in xml_files:
-        xml_to_labelme_json(os.path.join(pre, xml_file), '/home/qiangde/Data/side') # image folder path
-
+    # pre = '/home/qiangde/Data/side/outputs'
+    # xml_files = os.listdir(pre)
+    # for xml_file in xml_files:
+    #     xml_to_labelme_json(os.path.join(pre, xml_file), '/home/qiangde/Data/side') # image folder path
+    delete_json('/home/qiangde/Data/side')
 
 
 

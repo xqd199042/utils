@@ -28,13 +28,16 @@ def xml_info_out(anno_path):
             list_axis = [int(node.childNodes[0].data) for node in line.childNodes if type(node)==Element]
             dic['axis'] = polygon_to_line(list_axis)
         else:
-            polygon = item.getElementsByTagName('polygon')[0]
+            try:
+                polygon = item.getElementsByTagName('polygon')[0]
+            except:
+                continue
             list_axis = [int(node.childNodes[0].data) for node in polygon.childNodes if type(node)==Element]
             dic['axis'] = polygon_to_line(list_axis)
         result.append(dic)
     return result
 
-def defects_crop(xml_folder_path: str, img_folder_path: str, crop_size=64, limit_x=800, limit_y=14600):
+def defects_crop(xml_folder_path: str, img_folder_path: str, crop_size=64):
     current_path = os.path.join(os.getcwd(), 'out/train')
     result = {}
     xml_files = os.listdir(xml_folder_path)
@@ -54,6 +57,7 @@ def defects_crop(xml_folder_path: str, img_folder_path: str, crop_size=64, limit
             img_crop_path = os.path.join(os.path.join(current_path, name), str(result[name])+'.jpg')
             img_path = os.path.join(img_folder_path, xml_file.replace('.xml', '.jpg'))
             img = cv2.imread(img_path)
+            limit_x, limit_y = img.shape[1], img.shape[0]
             crop_min_y, crop_max_y, crop_min_x, crop_max_x = center_y - crop_size // 2, center_y + crop_size // 2, center_x - crop_size // 2, center_x + crop_size // 2
             if center_y - crop_size // 2 <= 0: crop_min_y, crop_max_y = 0, crop_size
             if center_y + crop_size // 2 >= limit_y: crop_min_y, crop_max_y = limit_y - crop_size, limit_y
@@ -64,7 +68,7 @@ def defects_crop(xml_folder_path: str, img_folder_path: str, crop_size=64, limit
             print('%s %d is cropped'%(name, result[name]))
 
 if __name__ == '__main__':
-    defects_crop('/home/qiangde/Data/side/outputs', '/home/qiangde/Data/side')
+    defects_crop('/home/qiangde/Data/huawei/black/side/outputs', '/home/qiangde/Data/huawei/black/side')
 
 
 
