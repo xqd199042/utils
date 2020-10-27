@@ -30,7 +30,7 @@ def json_crop_infos(json_folder_path: str):
     return img_infos
 
 # img_infos should be [{'imagePath': 'xxx', 'defects':[{'label': 'xx', 'axis': [...]}]}, ...]
-def defects_crop(img_infos: list, img_folder_path:str, crop_size=128):
+def defects_crop(img_infos: list, img_folder_path:str, crop_size=256):
     current_path = os.path.join(os.getcwd(), 'out/train')
     result = {}
     for img_info in img_infos:
