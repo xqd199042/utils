@@ -10,6 +10,7 @@ def word_to_pinyin(word: str):
         s += ''.join(i)
     return s
 
+# 单个xml文件对应一张图片，转为json文件放在图片目录下
 def xml_to_labelme_json(xml_path: str, img_folder_path):
     img_name = xml_path[xml_path.rindex(os.sep)+1:xml_path.rindex('.xml')]
     json_path = os.path.join(img_folder_path, img_name+'.json')
@@ -34,12 +35,12 @@ def xml_to_labelme_json(xml_path: str, img_folder_path):
         f.write(content)
         f.close()
 
+# json文件需要和imgs在同一目录下
 def delete_json(img_folder_path: str):
     for file in os.listdir(img_folder_path):
         if file.endswith('.json'):
             os.remove(os.path.join(img_folder_path, file))
 
-# '/home/qiangde/Data/huawei/black/side/outputs/0897-0003-14.xml'
 if __name__ == '__main__':
     # xml folder path
     pre = '/home/qiangde/Data/side/outputs'

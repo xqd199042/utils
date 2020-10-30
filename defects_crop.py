@@ -13,6 +13,7 @@ def polygon_to_line(list_axis):
     max_x, max_y = max(list_x), max(list_y)
     return (min_x, min_y), (max_x, max_y)
 
+# 从放labelme的json文件的文件夹中获得img_infos, 必须是绝对路径
 def json_crop_infos(json_folder_path: str):
     json_files = os.listdir(json_folder_path)
     img_infos = []
