@@ -55,25 +55,17 @@ class Labelme2Coco:
     def _init_annos(self, obj, anno_strategy):
         annotation = {'id': self.anno_id, 'image_id': self.img_id, 'category_id': self.classname_to_id[anno_strategy(obj['label'])], 'iscrowd': 0, 'area': 1.0}
         points = obj['points']
-        annotation['segmentation'] = [np.asarray(points).flatten().tolist()] if len(points)>2 else [self._bbox_to_seg(points)]
-        annotation['bbox'] = self._to_bbox(points)
+        annotation['segmentation'] = [np.asarray(points).flatten().tolist()]
+        annotation['bbox'] = self._bbox_to_coco_bbox(points)
         self.annotations.append(annotation)
         self.anno_id += 1
 
-    def _to_bbox(self, points):
+    def _bbox_to_coco_bbox(self, points):
         xs = [point[0] for point in points]
         ys = [point[1] for point in points]
         min_x, min_y = min(xs), min(ys)
         max_x, max_y = max(xs), max(ys)
         return [min_x, min_y, max_x-min_x, max_y-min_y]
-
-    def _bbox_to_seg(self, points):
-        xs = [point[0] for point in points]
-        ys = [point[1] for point in points]
-        min_x, min_y = min(xs), min(ys)
-        max_x, max_y = max(xs), max(ys)
-        return [min_x, min_y, max_x, min_y, max_x, max_y, min_x, max_y]
-
 
 # classname_to_id = {'baomo':1, 'cashang':2, 'huashang':3, 'pengshang':4, 'yashang':5, 'yise':6}
 if __name__ == '__main__':
@@ -84,7 +76,7 @@ if __name__ == '__main__':
         if anno.endswith('pengshang'):
             anno = 'pengshang'
         return anno
-    obj = Labelme2Coco(classname_to_id, '/home/qiangde/Desktop/double_check', anno_strategy)
+    obj = Labelme2Coco(classname_to_id, 'D:\\Data\\huawei\\black\\side', anno_strategy)
     obj.save_coco_json()
 
 
