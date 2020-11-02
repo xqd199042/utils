@@ -69,14 +69,14 @@ class Labelme2Coco:
 
 # classname_to_id = {'baomo':1, 'cashang':2, 'huashang':3, 'pengshang':4, 'yashang':5, 'yise':6}
 if __name__ == '__main__':
-    classname_to_id = {'baomo': 1, 'cashang': 2, 'huashang': 3, 'pengshang': 4, 'yashang': 5, 'yise': 6}
+    classname_to_id = {'baomo': 0, 'cashang': 1, 'huashang': 2, 'pengshang': 3, 'yashang': 4, 'yise': 5}
     def anno_strategy(anno: str):
         if anno in ('usbbaomo', 'USBbaomo', 'anjianbaomo', 'kongbaomo'):
             anno = 'baomo'
         if anno.endswith('pengshang'):
             anno = 'pengshang'
         return anno
-    obj = Labelme2Coco(classname_to_id, 'D:\\Data\\huawei\\black\\side', anno_strategy)
+    obj = Labelme2Coco(classname_to_id, '/home/qiangde/Desktop/double_check', anno_strategy)
     obj.save_coco_json()
 
 
