@@ -1,13 +1,22 @@
 import os
 
 
-if __name__ == '__main__':
-    targets = ('-01_', '-12_', '-13_', '-22_')
-    original_folder = '/home/qiangde/Desktop/double_check'
-    for file in os.listdir(original_folder):
-        for target in targets:
-            if target in file:
-                file_path = os.path.join(original_folder, file)
-                os.rename(file_path, file_path.replace('double_check', 'others'))
+class Test:
 
+    def __init__(self):
+        self.age = 0
+    def get_age(self):
+        self.calculate_age()
+        return self.age
+
+    def calculate_age(self):
+        pass
+
+if __name__ == '__main__':
+    class Test2(Test):
+        def __init__(self):
+            super(Test2, self).__init__()
+        # override
+        def calculate_age(self):
+            self.age = 18
 

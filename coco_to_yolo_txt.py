@@ -30,7 +30,7 @@ def coco_to_txt(instance):
                 f.write(box_info)
                 f.write('\n')
 
-def split_train_val_test(data_folder_path: str, datasets_name: str, test_ratio=0.1, val_ratio=0.5):
+def split_train_val_test(data_folder_path: str, datasets_name: str, test_ratio=0.1, val_ratio=0.9):
     base_path = os.path.join(data_folder_path[:data_folder_path.rindex(os.sep)], datasets_name)
     make_folders(base_path)
     total_txt = [txt for txt in os.listdir(data_folder_path) if txt.endswith('.txt')]

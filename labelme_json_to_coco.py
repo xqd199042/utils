@@ -71,7 +71,7 @@ class Labelme2Coco:
 if __name__ == '__main__':
     classname_to_id = {'baomo': 0, 'cashang': 1, 'huashang': 2, 'pengshang': 3, 'yashang': 4, 'yise': 5}
     def anno_strategy(anno: str):
-        if anno in ('usbbaomo', 'USBbaomo', 'anjianbaomo', 'kongbaomo'):
+        if anno.endswith('baomo'):
             anno = 'baomo'
         if anno.endswith('pengshang'):
             anno = 'pengshang'
