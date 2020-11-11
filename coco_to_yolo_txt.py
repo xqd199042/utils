@@ -61,7 +61,7 @@ if __name__ == '__main__':
     # with open('coco_format.json', 'r', encoding='utf-8') as f:
     #     instance = json.load(f)
     # coco_to_txt(instance)
-    split_train_val_test('/home/qiangde/Desktop/double_check', 'HUAWEI')
+    split_train_val_test('/home/qiangde/Desktop/data/others', 'AC')
 
 
 

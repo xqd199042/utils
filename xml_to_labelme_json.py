@@ -47,10 +47,11 @@ def delete_json(img_folder_path: str):
 
 if __name__ == '__main__':
     # xml folder path
-    pre = 'D:\\Data\\huawei\\black\\side\\outputs'
+    pre = '/home/qiangde/Desktop/blackside/outputs'
     xml_files = os.listdir(pre)
     for xml_file in xml_files:
-        xml_to_labelme_json(os.path.join(pre, xml_file), 'D:\\Data\\huawei\\black\\side', item_name='item', bnd_name=['polygon', 'line']) # image folder path
+        if not xml_file.endswith('.xml'): continue
+        xml_to_labelme_json(os.path.join(pre, xml_file), '/home/qiangde/Desktop/blackside', item_name='item', bnd_name=['polygon', 'line', 'bndbox']) # image folder path
     # delete_json('D:\\Data\\huawei\\black\\side')
 
 

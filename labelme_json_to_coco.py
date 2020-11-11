@@ -69,14 +69,23 @@ class Labelme2Coco:
 
 # classname_to_id = {'baomo':1, 'cashang':2, 'huashang':3, 'pengshang':4, 'yashang':5, 'yise':6}
 if __name__ == '__main__':
-    classname_to_id = {'baomo': 0, 'cashang': 1, 'huashang': 2, 'pengshang': 3, 'yashang': 4, 'yise': 5}
+    # classname_to_id = {'baomo': 0, 'cashang': 1, 'huashang': 2, 'pengshang': 3, 'yashang': 4, 'yise': 5}
+    # def anno_strategy(anno: str):
+    #     if anno.endswith('baomo'):
+    #         anno = 'baomo'
+    #     if anno.endswith('pengshang'):
+    #         anno = 'pengshang'
+    #     return anno
+    classname_to_id = {'cashang': 0, 'pengshang': 1, 'yashang': 2}
     def anno_strategy(anno: str):
-        if anno.endswith('baomo'):
-            anno = 'baomo'
+        if anno.endswith('yashang'):
+            anno = 'yashang'
+        if anno.endswith('cashang'):
+            anno = 'cashang'
         if anno.endswith('pengshang'):
             anno = 'pengshang'
         return anno
-    obj = Labelme2Coco(classname_to_id, '/home/qiangde/Desktop/double_check', anno_strategy)
+    obj = Labelme2Coco(classname_to_id, '/home/qiangde/Desktop/data/others', anno_strategy)
     obj.save_coco_json()
 
 

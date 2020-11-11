@@ -51,15 +51,19 @@ def txts_to_boxes(gt_txt_folder_path: str, infer_txt_folder_path: str, img_size)
     for infer_txt in infer_txts:
         # 一个infer_txt对应一张img，每张原图有N个缺陷，就有N个boxes
         filename = os.path.join(infer_txt_folder_path, infer_txt)
-        instance = {'filename': filename, 'boxes': []}
+        img = {'filename': filename, 'boxes': []}
         with open(filename, 'r', encoding='utf-8') as f:
-            txt_to_box(f, instance, img_size)
-        infer_boxes.append(instance)
+            txt_to_boxes(f, img, img_size)
+        infer_boxes.append(img)
         gt_txt = os.path.join(gt_txt_folder_path, infer_txt)
+        img = {'filename': filename, 'boxes': []}
+        with open(gt_txt, 'r', encoding='utf-8') as f:
+            txt_to_boxes(f, img, img_size)
+        gt_boxes.append(img)
     return gt_boxes, infer_boxes
 
 # 单个txt文件f转为box对象
-def txt_to_box(f, instance, img_size):
+def txt_to_boxes(f, instance, img_size):
     for line in f.readlines():
         line = line.strip('\n')
         object = line.split(' ')
