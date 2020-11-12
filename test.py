@@ -1,5 +1,7 @@
 import os
 
+import cv2
+
 
 class Test:
 
@@ -13,10 +15,18 @@ class Test:
         pass
 
 if __name__ == '__main__':
-    class Test2(Test):
-        def __init__(self):
-            super(Test2, self).__init__()
-        # override
-        def calculate_age(self):
-            self.age = 18
+    path = '/home/qiangde/Data/huawei/black/side'
+    result = {}
+    files = os.listdir(path)
+    for file in files:
+        if not file.endswith('.jpg'): continue
+        img = cv2.imread(os.path.join(path, file))
+        size = (img.shape[0], img.shape[1])
+        if size not in result:
+            result[size] = [file]
+        else:
+            result[size].append(file)
+    for size in result:
+        print(size, '\n', result[size])
+
 
